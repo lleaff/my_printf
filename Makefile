@@ -23,6 +23,8 @@ $(OUT): $(OBJ) $(LIB)
 $(LIB): $(LIB_DIR)
 	make -C $(LIB_DIR)
 
+re: fclean all
+
 clean:
 	rm -f $(OBJ)
 	make -C $(LIB_DIR) clean
