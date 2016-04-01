@@ -10,13 +10,15 @@ CC = gcc
 LIB = libmy.a
 LIB_DIR = lib
 
+INCLUDES = -Ilib
+
 all: $(OUT)
 
 .c.o:
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(OUT): $(OBJ) $(LIB)
-	$(CC) $(CFLAGS) -o $(OUT) $(OBJ)
+	$(CC) $(CFLAGS) -o $(OUT) $(OBJ) $(LIB)
 
 $(LIB): $(LIB_DIR)
 	make -C $(LIB_DIR)
