@@ -15,16 +15,16 @@ all: $(OUT)
 .c.o:
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(OUT): $(OBJ)
+$(OUT): $(OBJ) $(LIB)
 	$(CC) $(CFLAGS) -o $(OUT) $(OBJ)
 
-lib: $(LIB)
-	make -f $(LIB_DIR)/Makefile
+$(LIB): $(LIB_DIR)
+	make -C $(LIB_DIR)
 
 clean:
 	rm -f $(OBJ)
-	make -f $(LIB_DIR)/Makefile clean
+	make -C $(LIB_DIR) clean
 
 fclean: clean
 	rm -f $(OUT)
-	make -f $(LIB_DIR)/Makefile fclean
+	make -C $(LIB_DIR) fclean
