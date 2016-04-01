@@ -1,9 +1,8 @@
 #include "my_printf.h"
 
-int main(int argc, char **argv)
+int tests();
+
+int main()
 {
-  noop2(&argc, argv); /* DEBUG */
-  if (!check_prog_args(argc, argv))
-    return (EXIT_FAILURE);
-  return (EXIT_SUCCESS);
+  return (tests() == 0 ? EXIT_SUCCESS : EXIT_FAILURE);
 }
