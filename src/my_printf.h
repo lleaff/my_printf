@@ -26,4 +26,8 @@ char *my_vsprintf(const char *format, va_list arg);
 char *my_sprintf(const char *format, ...);
 int  my_printf(const char *format, ...);
 
+#ifdef DEBUG
+void DEBUG_fspe(t_fspe *fspe);
+#endif
+
 #endif /* MY_PRINTF_H */

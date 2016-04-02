@@ -5,6 +5,8 @@ my_printf
 *.o
 *.a
 
+*.pyc
+
 .DS_Store
 .AppleDouble
 .LSOverride
