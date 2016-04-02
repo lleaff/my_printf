@@ -4,7 +4,7 @@ OBJ = $(SRC:.c=.o)
 
 OUT =	my_printf
 
-CFLAGS = -g -Werror -Wall -Wextra
+CFLAGS = -g -Werror -Wall -Wextra -Wno-unused-variable
 CC = gcc
 
 LIB = libmy.a
