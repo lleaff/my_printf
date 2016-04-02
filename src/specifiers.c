@@ -10,6 +10,14 @@
   (fspe)->hasPrecision = true; \
   (fspe)->precision = p;
 
+void *unkown_conversion_type_specifier_error(t_fspe *fspe, char c)
+{
+  free(fspe);
+  my_puterr(FG_RED"ERROR: Unknown conversion type character ‘");
+  my_putcharerr(c);
+  my_puterr("‘ in format.\n"COLOR_RESET);
+  return (NULL);
+}
 
 t_bool fspe_set_flag(t_fspe *fspe, char flag)
 {
@@ -48,6 +56,8 @@ t_fspe *parse_specifier(const char *format, int *index)
       SET_PRECISION(fspe, num);
   if (str_has(SPECIFIERS, format[i]))
     fspe->specifier = format[i++];
+  else
+    return unkown_conversion_type_specifier_error(fspe, format[i]);
   *index += i;
   DEBUG_fspe(fspe); /* DEBUG */
   return (fspe);
