@@ -1,35 +1,12 @@
 #include <stdlib.h>
 #include "my_printf.h"
 
-static char *_fmt_with_base(void *np, t_fspe *fspe,
-    int base, const char *charset)
-{
-  long long int n;
-  char *str;
-
-  n = *(long long int*)np;
-  RETURN_IF_NULL(str = my_longlongtoa_base(n, base, charset));
-  str = format_with(str, fspe);
-  return (str);
-}
-
-static char *_fmt_with_base_unsigned(void *np, t_fspe *fspe,
-    int base, const char *charset)
-{
-  long long unsigned int n;
-  char *str;
-
-  n = *(long long unsigned int*)np;
-  RETURN_IF_NULL(str = my_longlongunsignedtoa_base(n, base, charset));
-  str = format_with(str, fspe);
-  return (str);
-}
-
 char *fmt_oct_int(void *np, t_fspe *fspe)
 {
   char *str;
 
-  str = _fmt_with_base_unsigned(np, fspe, 8, "01234567");
+  str = format_with_base_unsigned(np, fspe, 8, "01234567");
+  ASSIGN_AND_FREE(str, my_strcatnew("0", str));
   return (str);
 }
 
@@ -37,7 +14,7 @@ char *fmt_hex_int(void *np, t_fspe *fspe)
 {
   char *str;
 
-  str = _fmt_with_base(np, fspe, 16, "0123456789abcdef");
+  str = format_with_base(np, fspe, 16, "0123456789abcdef");
   ASSIGN_AND_FREE(str, my_strcatnew("0x", str));
   return (str);
 }
@@ -46,7 +23,7 @@ char *fmt_hex_int_up(void *np, t_fspe *fspe)
 {
   char *str;
 
-  str = _fmt_with_base(np, fspe, 16, "0123456789ABCDEF");
+  str = format_with_base(np, fspe, 16, "0123456789ABCDEF");
   ASSIGN_AND_FREE(str, my_strcatnew("0X", str));
   return (str);
 }

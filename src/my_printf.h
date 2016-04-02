@@ -40,6 +40,11 @@ t_fspe *parse_specifier(const char *format, int *index);
 
 typedef char *(*t_formatter)(void *, t_fspe *);
 
+char *format_with_base(void *np, t_fspe *fspe,
+    int base, const char *charset);
+char *format_with_base_unsigned(void *np, t_fspe *fspe,
+    int base, const char *charset);
+
 char *fmt_dec_int(void *, t_fspe *);
 char *fmt_dec_uint(void *, t_fspe *);
 char *fmt_oct_int(void *, t_fspe *);
