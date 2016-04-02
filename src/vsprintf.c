@@ -29,15 +29,16 @@ void get_chunks_and_specifiers(const char* format,
   }
 }
 
-char *my_vsprintf(const char *format, va_list arg)
+char *my_vsprintf(const char *format, va_list args)
 {
-  noop(format, arg); /* DEBUG */
   t_ll *chunks;
   t_ll *fspes;
   t_ll *formatted;
 
   set_to(NULL, &chunks, &fspes, &formatted, NULL);
   get_chunks_and_specifiers(format, &chunks, &fspes);
-  ll_debug_strings(chunks);
+  formatted = format_args(fspes, args);
+  my_putstr("Chunks: "); ll_debug_strings(chunks);
+  my_putstr("Formatted: "); ll_debug_strings(formatted);
   return (""); /*DEBUG*/
 }

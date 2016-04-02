@@ -54,7 +54,9 @@ t_fspe *parse_specifier(const char *format, int *index)
   if (format[i] == '.')
     if ((num = parse_format_uint(format + ++i, &i)) != -1)
       SET_PRECISION(fspe, num);
-  if (str_has(SPECIFIERS, format[i]))
+  if (str_has(g_LENGTH_MODIFIER_CHARS, format[i]))
+    fspe->length = parse_length_modifier(format + i, &i);
+  if (str_has(g_SPECIFIERS, format[i]))
     fspe->specifier = format[i++];
   else
     return unkown_conversion_type_specifier_error(fspe, format[i]);
