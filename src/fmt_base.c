@@ -38,6 +38,7 @@ char *fmt_hex_int(void *np, t_fspe *fspe)
   char *str;
 
   str = _fmt_with_base(np, fspe, 16, "0123456789abcdef");
+  ASSIGN_AND_FREE(str, my_strcatnew("0x", str));
   return (str);
 }
 
@@ -46,5 +47,6 @@ char *fmt_hex_int_up(void *np, t_fspe *fspe)
   char *str;
 
   str = _fmt_with_base(np, fspe, 16, "0123456789ABCDEF");
+  ASSIGN_AND_FREE(str, my_strcatnew("0X", str));
   return (str);
 }
