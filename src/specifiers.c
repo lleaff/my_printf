@@ -8,15 +8,6 @@
   (fspe)->hasPrecision = true; \
   (fspe)->precision = p;
 
-void *unkown_conversion_type_specifier_error(t_fspe *fspe, char c)
-{
-  free(fspe);
-  my_puterr(FG_RED"ERROR: Unknown conversion type character ‘");
-  my_putcharerr(c);
-  my_puterr("‘ in format.\n"COLOR_RESET);
-  return (NULL);
-}
-
 t_bool fspe_set_flag(t_fspe *fspe, char flag)
 {
   if (HAS_FLAG(fspe, flag))
