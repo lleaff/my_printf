@@ -7,9 +7,9 @@
 #define TEST2_ARG1 "world"
 #define TEST2_RES (STRLEN(TEST2_FRM) + STRLEN(TEST2_ARG1) - 2)
 
-#define TEST3_FRM "123? [%0-6.4d].\n"
+#define TEST3_FRM "123? [%-6.4d].\n"
 #define TEST3_ARG1 123
-#define TEST3_RES (STRLEN(TEST3_FRM) + 3)
+#define TEST3_RES (STRLEN(TEST3_FRM))
 
 #define TEST4_FRM "255 (FF)? [%#X].\n"
 #define TEST4_ARG1 255
