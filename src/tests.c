@@ -3,11 +3,11 @@
 #define TEST1_FRM "Hello%%.\n"
 #define TEST1_RES (STRLEN(TEST1_FRM) - 1)
 
-#define TEST2_FRM "Hello %s."
+#define TEST2_FRM "Hello %s.\n"
 #define TEST2_ARG1 "world"
-#define TEST2_RES (STRLEN(TEST2_FRM) + STRLEN(TEST2_ARG1))
+#define TEST2_RES (STRLEN(TEST2_FRM) + STRLEN(TEST2_ARG1) - 2)
 
-#define TEST3_FRM "123? %-6.4d."
+#define TEST3_FRM "123? %-6.4d.\n"
 #define TEST3_ARG1 123
 #define TEST3_RES (STRLEN(TEST3_FRM) + 3)
 
@@ -16,11 +16,18 @@ int g_failures;
 static void assert(char *msg, t_bool res)
 {
   if (res)
-    return ;
-  my_putstr(FG_RED""BG_WHITE"[FAILED] ");
-  my_putstr(msg);
-  my_putstr(COLOR_RESET"\n");
-  g_failures++;
+  {
+    my_putstr(FG_WHITE""BG_GREEN"[SUCCESS] ");
+    my_putstr(msg);
+    my_putstr(COLOR_RESET"\n");
+  }
+  else
+  {
+    my_putstr(FG_WHITE""BG_RED"[FAILED] ");
+    my_putstr(msg);
+    my_putstr(COLOR_RESET"\n");
+    g_failures++;
+  }
 }
 
 int tests()
