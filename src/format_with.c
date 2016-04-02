@@ -31,7 +31,7 @@ char *pad_str_right(char *str, int w, char fill)
   for (i = 0; i < w - len; i ++)
     s[i] = fill;
   for (; *str; )
-    s[i] = *str++;
+    s[i++] = *str++;
   s[i + 1] = '\0';
   return (s);
 }
