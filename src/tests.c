@@ -7,7 +7,7 @@
 #define TEST2_ARG1 "world"
 #define TEST2_RES (STRLEN(TEST2_FRM) + STRLEN(TEST2_ARG1))
 
-#define TEST3_FRM "123? %d."
+#define TEST3_FRM "123? %-6.4d."
 #define TEST3_ARG1 123
 #define TEST3_RES (STRLEN(TEST3_FRM) + 3)
 
@@ -25,6 +25,7 @@ static void assert(char *msg, t_bool res)
 
 int tests()
 {
+  printf("%04d\n", 14);
   g_failures = 0;
   assert("1", my_printf(TEST1_FRM) == TEST1_RES);
   assert("2", my_printf(TEST2_FRM, TEST2_ARG1) == TEST2_RES);

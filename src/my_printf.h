@@ -10,10 +10,12 @@
 
 t_bool check_prog_args(int argc, char **argv);
 
+#define FLAGS "-+ #0"
+#define SPECIFIERS "diuoxXcsp"
+
 typedef struct s_fspe {
   char specifier;
-  t_bool hasFlag;
-  char flag;
+  char flags[sizeof(FLAGS)];
   t_bool hasWidth;
   int width;
   t_bool hasPrecision;

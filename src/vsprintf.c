@@ -24,8 +24,8 @@ void get_chunks_and_specifiers(const char* format,
         BREAK_OR_SKIP_DOUBLE_PERCENT(format, j);
     *chunks = ll_append(*chunks, ll_new(my_strnnew(format + i, j - i)));
     if (c == '%')
-      *fspes = ll_append(*fspes, ll_new(parse_specifier(format + i, &j)));
-    printf("i(%d) j(%d)\n", i, j);/* DEBUG */
+      *fspes = ll_append(*fspes, ll_new(parse_specifier(format + j + 1, &j)));
+    /* printf("i(%d) j(%d)\n", i, j); *//* DEBUG */
   }
 }
 
