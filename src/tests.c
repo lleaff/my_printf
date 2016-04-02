@@ -1,7 +1,7 @@
 #include "my_printf.h"
 
-#define TEST1_FRM "Hello.\n"
-#define TEST1_RES (STRLEN(TEST1_FRM))
+#define TEST1_FRM "Hello%%.\n"
+#define TEST1_RES (STRLEN(TEST1_FRM) - 1)
 
 #define TEST2_FRM "Hello %s."
 #define TEST2_ARG1 "world"

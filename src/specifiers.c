@@ -1,5 +1,8 @@
 #include "my_printf.h"
 
+static char *g_FLAGS = "-+ #0";
+static char *g_SPECIFIERS = "diuoxXcsp";
+
 t_fspe *parse_specifier(const char *format, int *index)
 {
   t_fspe *fspe;
