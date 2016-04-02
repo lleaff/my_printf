@@ -4,7 +4,15 @@
 const char g_SPECIFIERS[] = "diuoxXcsp";
 
 const t_formatter g_FORMATTERS[sizeof(g_SPECIFIERS)] = {
-  
+  fmt_dec_int,
+  fmt_dec_int,
+  fmt_dec_uint,
+  fmt_oct_int,
+  fmt_hex_int,
+  fmt_hex_int_up,
+  fmt_char,
+  fmt_str,
+  fmt_ptr
 };
 
 t_formatter get_formatter(char c)

@@ -1,7 +1,5 @@
 #include "my_printf.h"
 
-#define HAS_FLAG(fspe, flag) (str_has((fspe)->flags, (flag)))
-
 #define SET_WIDTH(fspe, w) \
   (fspe)->hasWidth = true; \
   (fspe)->width = w;
