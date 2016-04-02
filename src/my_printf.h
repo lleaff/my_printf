@@ -36,12 +36,11 @@ typedef struct s_fspe {
 
 t_fspe *parse_specifier(const char *format, int *index);
 
-typedef char *(*t_formatter)(void *);
+typedef char *(*t_formatter)(void *, t_fspe *);
 
 char *call_with_int(t_formatter formatter, t_fspe *fspe, va_list args);
 char *call_with_uint(t_formatter formatter, t_fspe *fspe, va_list args);
 char *call_with_char(t_formatter formatter, t_fspe *fspe, va_list args);
-char *call_with_string(t_formatter formatter, t_fspe *fspe, va_list args);
 char *call_with_pointer(t_formatter formatter, t_fspe *fspe, va_list args);
 
 t_ll *format_args(t_ll *spcs, va_list args);

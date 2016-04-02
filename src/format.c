@@ -30,9 +30,7 @@ char *call_formatter(t_fspe *fspe, va_list args)
     res = call_with_uint(formatter, fspe, args);
   else if ('c' == c)
     res = call_with_char(formatter, fspe, args);
-  else if ('s' == c)
-    res = call_with_string(formatter, fspe, args);
-  else if ('p' == c)
+  else if (str_has("sp", c))
     res = call_with_pointer(formatter, fspe, args);
   else
     res = NULL;

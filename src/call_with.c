@@ -1,31 +1,62 @@
+#include <stdarg.h>
 #include "my_printf.h"
 
 char *call_with_int(t_formatter formatter, t_fspe *fspe, va_list args)
 {
-  noop(formatter, fspe, args);
-  return ("");
+  long long int n;
+
+  switch (fspe->length)
+  {
+    case length_long:
+      n = va_arg(args, long int);
+      break;
+    case length_long_long:
+      n = va_arg(args, long long int);
+      break;
+    case length_normal:
+    case length_short:
+    case length_short_short:
+    default:
+      n = va_arg(args, int);
+      break;
+  }
+  return (formatter(&n, fspe));
 }
 
 char *call_with_uint(t_formatter formatter, t_fspe *fspe, va_list args)
 {
-  noop(formatter, fspe, args);
-  return ("");
+  unsigned long long int n;
+
+  switch (fspe->length)
+  {
+    case length_long:
+      n = va_arg(args, unsigned long int);
+      break;
+    case length_long_long:
+      n = va_arg(args, unsigned long long int);
+      break;
+    case length_normal:
+    case length_short:
+    case length_short_short:
+    default:
+      n = va_arg(args, unsigned int);
+      break;
+  }
+  return (formatter(&n, fspe));
 }
 
 char *call_with_char(t_formatter formatter, t_fspe *fspe, va_list args)
 {
-  noop(formatter, fspe, args);
-  return ("");
-}
+  char c;
 
-char *call_with_string(t_formatter formatter, t_fspe *fspe, va_list args)
-{
-  noop(formatter, fspe, args);
-  return ("");
+  c = (char)va_arg(args, int);
+  return (formatter(&c, fspe));
 }
 
 char *call_with_pointer(t_formatter formatter, t_fspe *fspe, va_list args)
 {
-  noop(formatter, fspe, args);
-  return ("");
+  void *str;
+
+  str = va_arg(args, void*);
+  return (formatter(str, fspe));
 }
