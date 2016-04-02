@@ -17,16 +17,15 @@ static void assert(char *msg, t_bool res)
 {
   if (res)
     return ;
-  my_putstr("[FAILED] ");
+  my_putstr(FG_RED""BG_WHITE"[FAILED] ");
   my_putstr(msg);
-  my_putchar('\n');
+  my_putstr(COLOR_RESET"\n");
   g_failures++;
 }
 
 int tests()
 {
   g_failures = 0;
-  printf("%s [%d]\n", string("yoman"), string_len(string("yoman")));
   assert("1", my_printf(TEST1_FRM) == TEST1_RES);
   assert("2", my_printf(TEST2_FRM, TEST2_ARG1) == TEST2_RES);
   assert("3", my_printf(TEST3_FRM, TEST3_ARG1) == TEST3_RES);

@@ -24,6 +24,7 @@ $(LIB): $(LIB_DIR)
 	make -C $(LIB_DIR)
 
 re: fclean all
+	make -C $(LIB_DIR) re
 
 clean:
 	rm -f $(OBJ)
