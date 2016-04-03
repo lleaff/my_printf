@@ -12,7 +12,9 @@
 
 char *make_chunk(const char *format, int i, int j)
 {
-  return (replace_escapes_new(my_strnnew(format + i, j - i)));
+  return (i - j ?
+      replace_escapes_new(my_strnnew(format + i, j - i)) :
+      my_strnew(""));
 }
 
 void get_chunks_and_specifiers(const char* format,
