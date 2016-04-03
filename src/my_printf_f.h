@@ -1,5 +1,5 @@
-#ifndef MY_PRINTF_H
-#define MY_PRINTF_H
+#ifndef MY_PRINTF_F_H
+#define MY_PRINTF_F_H
 
 #ifdef DEBUG
 #include <stdio.h>
@@ -78,4 +78,4 @@ int  my_printf(const char *format, ...);
 void DEBUG_fspe(t_fspe *fspe);
 #endif
 
-#endif /* MY_PRINTF_H */
+#endif /* MY_PRINTF_F_H */
