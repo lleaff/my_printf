@@ -44,5 +44,6 @@ char *replace_escapes_new(const char *str)
     else
     nstr[j] = str[i];
   }
+  nstr[j] = '\0';
   return (realloc(nstr, j));
 }

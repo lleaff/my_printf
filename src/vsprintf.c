@@ -12,25 +12,27 @@
 
 char *make_chunk(const char *format, int i, int j)
 {
-  return (i - j ?
-      replace_escapes_new(my_strnnew(format + i, j - i)) :
-      my_strnew(""));
+  if (i - j)
+      return (replace_escapes_new(my_strnnew(format + i, j - i)));
+  else
+    return (my_strnew(""));
 }
 
 void get_chunks_and_specifiers(const char* format,
     t_ll **chunks, t_ll **fspes)
 {
-  char c;
   int i;
   int j;
 
-  for (i = 0, c = format[i]; c != '\0'; i = j + 1)
+  for (i = 0, j = 0; format[i] != '\0' && format[j] != '\0'; i = j + 1)
   {
-    for (j = i, c = format[j]; c != '\0'; j++, c = format[j])
-      if (c == '%')
+    for (j = i; format[j] != '\0'; j++)
+      if (format[j] == '%')
+      {
         BREAK_OR_SKIP_DOUBLE_PERCENT(format, j);
+      }
     *chunks = ll_append(*chunks, ll_new(make_chunk(format, i, j)));
-    if (c == '%')
+    if (format[j] == '%')
       *fspes = ll_append(*fspes, ll_new(parse_specifier(format + j + 1, &j)));
   }
 }
@@ -40,9 +42,15 @@ char *my_vsprintf(const char *format, va_list args)
   t_ll *chunks;
   t_ll *fspes;
   t_ll *formatted;
+  t_ll *zipped;
+  char *str;
 
   set_to(NULL, &chunks, &fspes, &formatted, NULL);
   get_chunks_and_specifiers(format, &chunks, &fspes);
   formatted = format_args(fspes, args);
-  return (ll_concat_str(ll_zip(chunks, formatted)));
+  zipped = ll_zip(chunks, formatted);
+  str = ll_concat_str(zipped);
+  ll_free(zipped);
+  ll_free(fspes);
+  return (str);
 }

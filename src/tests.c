@@ -1,22 +1,22 @@
 #include "my_printf.h"
 
-#define TEST1_FRM "Hello%%.\n"
+#define TEST1_FRM "Hello%%."
 #define TEST1_RES (STRLEN(TEST1_FRM) - 1)
 
-#define TEST2_FRM "Hello %s%c.\n"
+#define TEST2_FRM "Hello %s%c."
 #define TEST2_ARG1 "world"
 #define TEST2_ARG2 '!'
 #define TEST2_RES (STRLEN(TEST2_FRM) + STRLEN(TEST2_ARG1) - 3)
 
-#define TEST3_FRM "123? [%-6.4d].\n"
+#define TEST3_FRM "123? [%-6.4d]."
 #define TEST3_ARG1 123
 #define TEST3_RES (STRLEN(TEST3_FRM))
 
-#define TEST4_FRM "255 (FF)? [%#X].\n"
+#define TEST4_FRM "255 (FF)? [%#X]."
 #define TEST4_ARG1 255
 #define TEST4_RES (STRLEN(TEST4_FRM) + 1)
 
-#define TEST5_FRM "+33 (33)? [%+i] && -22 (-22)? [%-d].\n"
+#define TEST5_FRM "+33 (33)? [%+i] && -22 (-22)? [%-d]."
 #define TEST5_ARG1 33
 #define TEST5_ARG2 -22
 #define TEST5_RES (STRLEN(TEST5_FRM))
@@ -25,6 +25,7 @@ int g_failures;
 
 static void assert(char *msg, t_bool res)
 {
+  my_putchar('\n');
   if (res)
   {
     my_putstr(FG_WHITE""BG_GREEN"[SUCCESS] ");

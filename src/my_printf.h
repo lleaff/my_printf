@@ -1,6 +1,7 @@
 #ifndef MY_PRINTF_H
 #define MY_PRINTF_H
 
+#define DEBUG
 #ifdef DEBUG
 #include <stdio.h>
 #endif
