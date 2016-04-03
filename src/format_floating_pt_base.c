@@ -39,11 +39,8 @@ char *format_floating_pt_base(void *np, t_fspe *fspe,
 
   n = *(long double*)np;
   precision= fspe->hasPrecision ? fspe->precision : DEFAULT_PRECISION_FP;
-  printf("n = (%Lf)\n", n);/* DEBUG */
-  printf("my_longlongtoa_base(%lld)\n", (t_llint)n);/* DEBUG */
   RETURN_IF_NULL(str = my_longlongtoa_base((t_llint)n, base, charset));
   fract = format_fractional_part_base(n, precision, base, charset);
-  printf("fract_p: (%s)\n", fract); /* DEBUG */
   ASSIGN_AND_FREE(str, my_strcatnew(str, fract));
   free(fract);
   str = format_with(str, fspe);

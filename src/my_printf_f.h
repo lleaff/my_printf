@@ -9,6 +9,10 @@
 #include <stdarg.h>
 #include "lib.h"
 
+#define CHARSET_DECIMAL "0123456789"
+#define CHARSET_HEXADECIMAL "0123456789abcdef"
+#define CHARSET_HEXADECIMAL_UP "0123456789ABCDEF"
+
 t_bool check_prog_args(int argc, char **argv);
 
 char *pad_str_left(char *str, int w, char fill);
@@ -56,6 +60,8 @@ char *fmt_char(void *, t_fspe *);
 char *fmt_str(void *, t_fspe *);
 char *fmt_ptr(void *, t_fspe *);
 char *fmt_floating(void *, t_fspe *);
+char *fmt_float_hex(void *, t_fspe *);
+char *fmt_float_hex_up(void *, t_fspe *);
 
 char *format_integer_base(void *np, t_fspe *fspe,
     int base, const char *charset);

@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include "my_printf_f.h"
 
-const char g_SPECIFIERS[] = "diuoxXfcsp";
+const char g_SPECIFIERS[] = "diuoxXfaAcsp";
 
 const t_formatter g_FORMATTERS[sizeof(g_SPECIFIERS)] = {
   fmt_dec_int,
@@ -11,6 +11,8 @@ const t_formatter g_FORMATTERS[sizeof(g_SPECIFIERS)] = {
   fmt_hex_int,
   fmt_hex_int_up,
   fmt_floating,
+  fmt_float_hex,
+  fmt_float_hex_up,
   fmt_char,
   fmt_str,
   fmt_ptr
@@ -37,7 +39,7 @@ char *call_formatter(t_fspe *fspe, va_list args)
     res = call_with_int(formatter, fspe, args);
   else if (str_has("uoxX", c))
     res = call_with_uint(formatter, fspe, args);
-  else if (str_has("f", c))
+  else if (str_has("faA", c))
     res = call_with_ldouble(formatter, fspe, args);
   else if ('c' == c)
     res = call_with_char(formatter, fspe, args);

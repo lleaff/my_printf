@@ -26,6 +26,10 @@
 #define TEST6_ARG2 -4.123456789
 #define TEST6_RES (STRLEN(TEST6_FRM) + 3 + 7)
 
+#define TEST7_FRM "+ (456.123)? [%a]."
+#define TEST7_ARG1 456.123
+#define TEST7_RES (STRLEN(TEST7_FRM) + 10)
+
 int g_failures;
 
 static void assert(char *msg, t_bool res)
@@ -55,5 +59,6 @@ int tests()
   assert("4", my_printf(TEST4_FRM, TEST4_ARG1) == TEST4_RES);
   assert("5", my_printf(TEST5_FRM, TEST5_ARG1, TEST5_ARG2) == TEST5_RES);
   assert("6", my_printf(TEST6_FRM, TEST6_ARG1, TEST6_ARG2) == TEST6_RES);
+  assert("7", my_printf(TEST7_FRM, TEST7_ARG1) == TEST7_RES);
   return (g_failures);
 }

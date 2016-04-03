@@ -1,4 +1,4 @@
-A minimal printf implementation with no float support and no buffering.
+A minimal printf implementation with no buffering.
 
 ```c
 int  my_printf(const char *format, ...);
@@ -20,6 +20,9 @@ char *my_vsprintf(const char *format, va_list arg);
 | `o`        | Unsigned octal integer                   |
 | `x`        | Unsigned hexadecimal integer             |
 | `X`        | Unsigned hexadecimal integer (uppercase) |
+| `f`        | Decimal floating point                   |
+| `a`        | Hexadecimal floating point               |
+| `A`        | Hexadecimal floating point (uppercase)   |
 | `c`        | Character                                |
 | `s`        | String                                   |
 | `p`        | Pointer address                          |
@@ -30,15 +33,16 @@ char *my_vsprintf(const char *format, va_list arg);
 |------------|------------------------------------------------------|
 | `-`        | Justify to the left instead of right.                |
 | `+`        | Force sign display.                                  |
-| ` `        | Prepend a space if no sign is present.               |
+| *(space)*  | Prepend a space if no sign is present.               |
 | `#`        | Prepend base prefix (`o => 0`, `x => 0x`, `X => 0X`) |
 | `0`        | Pad number with `0` instead of spaces.               |
 
 ####Length:
 
-| Length | Type            |
-|--------|-----------------|
-| `hh`   | `char`          |
-| `h`    | `short ...`     |
-| `l`    | `long ...`      |
-| `ll`   | `long long ...` |
+| Length | Type                  |
+|--------|-----------------------|
+| `hh`   | `char`                |
+| `h`    | `short` *integer*     |
+| `l`    | `long` *integer*      |
+| `ll`   | `long long` *integer* |
+| `L`    | `long double`         |
