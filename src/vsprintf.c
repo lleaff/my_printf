@@ -12,8 +12,14 @@
 
 char *make_chunk(const char *format, int i, int j)
 {
+  char *str;
+
   if (i - j)
-      return (replace_escapes_new(my_strnnew(format + i, j - i)));
+  {
+    str = my_strnnew(format + i, j - i);
+    ASSIGN_AND_FREE(str, replace_escapes_new(str));
+    return (str);
+  }
   else
     return (my_strnew(""));
 }
