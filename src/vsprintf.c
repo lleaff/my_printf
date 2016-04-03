@@ -42,7 +42,5 @@ char *my_vsprintf(const char *format, va_list args)
   set_to(NULL, &chunks, &fspes, &formatted, NULL);
   get_chunks_and_specifiers(format, &chunks, &fspes);
   formatted = format_args(fspes, args);
-  my_putstr("Chunks: "); ll_debug_strings(chunks); /* DEBUG */
-  my_putstr("Formatted: "); ll_debug_strings(formatted); /* DEBUG */
   return (ll_concat_str(ll_zip(chunks, formatted)));
 }

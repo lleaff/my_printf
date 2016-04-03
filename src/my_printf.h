@@ -1,11 +1,11 @@
 #ifndef MY_PRINTF_H
 #define MY_PRINTF_H
 
-#define DEBUG
 #ifdef DEBUG
 #include <stdio.h>
 #endif
 
+#include <stdarg.h>
 #include "lib.h"
 
 t_bool check_prog_args(int argc, char **argv);

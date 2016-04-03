@@ -50,7 +50,6 @@ t_fspe *parse_specifier(const char *format, int *index)
   else
     return unkown_conversion_type_specifier_error(fspe, format[i]);
   *index += i;
-  DEBUG_fspe(fspe); /* DEBUG */
   return (fspe);
 }
 
