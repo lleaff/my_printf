@@ -49,7 +49,7 @@ re: fclean all
 	make -C $(LIB_DIR) re
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(LIB)
 	make -C $(LIB_DIR) clean
 
 fclean: clean
