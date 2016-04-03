@@ -2,14 +2,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-#define BREAK_OR_SKIP_DOUBLE_PERCENT(format, j) \
-  { \
-    if (format[j + 1] == '%') \
-      j += 2 ; \
-    else \
-      break ; \
-  }
-
 char *make_chunk(const char *format, int i, int j)
 {
   char *str;
@@ -33,10 +25,15 @@ void get_chunks_and_specifiers(const char* format,
   for (i = 0, j = 0; format[i] != '\0' && format[j] != '\0'; i = j + 1)
   {
     for (j = i; format[j] != '\0'; j++)
+    {
       if (format[j] == '%')
       {
-        BREAK_OR_SKIP_DOUBLE_PERCENT(format, j);
+        if (format[j + 1] == '%') 
+          j += 2; 
+        else 
+          break ; 
       }
+    }
     *chunks = ll_append(*chunks, ll_new(make_chunk(format, i, j)));
     if (format[j] == '%')
       *fspes = ll_append(*fspes, ll_new(parse_specifier(format + j + 1, &j)));
