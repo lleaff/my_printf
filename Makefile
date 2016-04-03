@@ -7,7 +7,7 @@ SRCFILES = \
 			fmt_ptr.c \
 			fmt_str.c \
 			format.c \
-			format_with_base.c \
+			format_integer_base.c \
 			format_with.c \
 			length_modifiers.c \
 			main.c \

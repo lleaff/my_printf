@@ -24,7 +24,7 @@ char *apply_sign_flags(char *str, t_fspe *fspe)
   return (str);
 }
 
-char *format_with_base(void *np, t_fspe *fspe,
+char *format_integer_base(void *np, t_fspe *fspe,
     int base, const char *charset)
 {
   long long int n;
@@ -38,7 +38,7 @@ char *format_with_base(void *np, t_fspe *fspe,
   return (str);
 }
 
-char *format_with_base_unsigned(void *np, t_fspe *fspe,
+char *format_integer_base_unsigned(void *np, t_fspe *fspe,
     int base, const char *charset)
 {
   long long unsigned int n;
