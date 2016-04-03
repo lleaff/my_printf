@@ -49,7 +49,7 @@ char *call_with_uint(t_formatter formatter, t_fspe *fspe, va_list args)
 
 char *call_with_ldouble(t_formatter formatter, t_fspe *fspe, va_list args)
 {
-  t_lluint n;
+  long double n;
 
   switch (fspe->length)
   {

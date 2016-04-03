@@ -21,10 +21,10 @@
 #define TEST5_ARG2 -22
 #define TEST5_RES (STRLEN(TEST5_FRM))
 
-#define TEST6_FRM "+4.123000 (4.123)? [%.6f] && -4.123456 (-4.123456789)? [%.6i]."
+#define TEST6_FRM "+4.123000 (4.123)? [%f] && -4.123456 (-4.123456789)? [%.5f]."
 #define TEST6_ARG1 4.123
 #define TEST6_ARG2 -4.123456789
-#define TEST6_RES (STRLEN(TEST6_FRM) + 1 + 8)
+#define TEST6_RES (STRLEN(TEST6_FRM) + 3 + 7)
 
 int g_failures;
 
@@ -57,4 +57,3 @@ int tests()
   assert("6", my_printf(TEST6_FRM, TEST6_ARG1, TEST6_ARG2) == TEST6_RES);
   return (g_failures);
 }
-
