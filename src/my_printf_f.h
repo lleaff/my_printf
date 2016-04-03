@@ -1,6 +1,7 @@
 #ifndef MY_PRINTF_F_H
 #define MY_PRINTF_F_H
 
+#define DEBUG
 #ifdef DEBUG
 #include <stdio.h>
 #endif
@@ -23,7 +24,8 @@ typedef enum {
   length_short_short,
   length_short,
   length_long,
-  length_long_long
+  length_long_long,
+  length_long_double
 } t_length_m;
 
 extern const char g_LENGTH_MODIFIER_CHARS[];
@@ -45,11 +47,6 @@ t_fspe *parse_specifier(const char *format, int *index);
 
 typedef char *(*t_formatter)(void *, t_fspe *);
 
-char *format_integer_base(void *np, t_fspe *fspe,
-    int base, const char *charset);
-char *format_integer_base_unsigned(void *np, t_fspe *fspe,
-    int base, const char *charset);
-
 char *fmt_dec_int(void *, t_fspe *);
 char *fmt_dec_uint(void *, t_fspe *);
 char *fmt_oct_int(void *, t_fspe *);
@@ -58,9 +55,18 @@ char *fmt_hex_int_up(void *, t_fspe *);
 char *fmt_char(void *, t_fspe *);
 char *fmt_str(void *, t_fspe *);
 char *fmt_ptr(void *, t_fspe *);
+char *fmt_floating(void *, t_fspe *);
+
+char *format_integer_base(void *np, t_fspe *fspe,
+    int base, const char *charset);
+char *format_integer_base_unsigned(void *np, t_fspe *fspe,
+    int base, const char *charset);
+char *format_floating_pt_base(void *np, t_fspe *fspe,
+    int base, const char *charset);
 
 char *call_with_int(t_formatter formatter, t_fspe *fspe, va_list args);
 char *call_with_uint(t_formatter formatter, t_fspe *fspe, va_list args);
+char *call_with_ldouble(t_formatter formatter, t_fspe *fspe, va_list args);
 char *call_with_char(t_formatter formatter, t_fspe *fspe, va_list args);
 char *call_with_pointer(t_formatter formatter, t_fspe *fspe, va_list args);
 

@@ -1,7 +1,7 @@
 #include <stdarg.h>
 #include "my_printf_f.h"
 
-const char g_SPECIFIERS[] = "diuoxXcsp";
+const char g_SPECIFIERS[] = "diuoxXfcsp";
 
 const t_formatter g_FORMATTERS[sizeof(g_SPECIFIERS)] = {
   fmt_dec_int,
@@ -10,6 +10,7 @@ const t_formatter g_FORMATTERS[sizeof(g_SPECIFIERS)] = {
   fmt_oct_int,
   fmt_hex_int,
   fmt_hex_int_up,
+  fmt_floating,
   fmt_char,
   fmt_str,
   fmt_ptr
@@ -36,16 +37,16 @@ char *call_formatter(t_fspe *fspe, va_list args)
     res = call_with_int(formatter, fspe, args);
   else if (str_has("uoxX", c))
     res = call_with_uint(formatter, fspe, args);
+  else if (str_has("f", c))
+    res = call_with_ldouble(formatter, fspe, args);
   else if ('c' == c)
     res = call_with_char(formatter, fspe, args);
   else if (str_has("sp", c))
     res = call_with_pointer(formatter, fspe, args);
   else
-    res = NULL;
+    return (no_corresponding_formatter_error(fspe));
   return (res);
 }
-
-#define LL_FSPE(ll) ((t_fspe*)(ll)->data)
 
 t_ll *format_args(t_ll *spcs, va_list args)
 {
@@ -56,7 +57,7 @@ t_ll *format_args(t_ll *spcs, va_list args)
     return (NULL);
   for (formatted = NULL; spcs != NULL; spcs = spcs->next)
   {
-    fspe = LL_FSPE(spcs);
+    fspe = ((t_fspe*)(spcs)->data);
     formatted = ll_append(formatted, ll_new(call_formatter(fspe, args)));
   }
   return (formatted);

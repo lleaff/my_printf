@@ -21,6 +21,11 @@
 #define TEST5_ARG2 -22
 #define TEST5_RES (STRLEN(TEST5_FRM))
 
+#define TEST6_FRM "+4.123000 (4.123)? [%.6f] && -4.123456 (-4.123456789)? [%.6i]."
+#define TEST6_ARG1 4.123
+#define TEST6_ARG2 -4.123456789
+#define TEST6_RES (STRLEN(TEST6_FRM) + 1 + 8)
+
 int g_failures;
 
 static void assert(char *msg, t_bool res)
@@ -49,6 +54,7 @@ int tests()
   assert("3", my_printf(TEST3_FRM, TEST3_ARG1) == TEST3_RES);
   assert("4", my_printf(TEST4_FRM, TEST4_ARG1) == TEST4_RES);
   assert("5", my_printf(TEST5_FRM, TEST5_ARG1, TEST5_ARG2) == TEST5_RES);
+  assert("6", my_printf(TEST6_FRM, TEST6_ARG1, TEST6_ARG2) == TEST6_RES);
   return (g_failures);
 }
 

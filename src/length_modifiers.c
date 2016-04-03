@@ -1,6 +1,6 @@
 #include "my_printf_f.h"
 
-const char g_LENGTH_MODIFIER_CHARS[] = "hl";
+const char g_LENGTH_MODIFIER_CHARS[] = "hlL";
 
 t_length_m parse_length_modifier(const char *format, int *index)
 {
@@ -23,6 +23,8 @@ t_length_m parse_length_modifier(const char *format, int *index)
       else
         mod = length_long;
   }
+  else if (format[i] == 'L')
+    mod = length_long_double;
   index += i;
   return (mod);
 }

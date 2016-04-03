@@ -4,9 +4,11 @@ SRCFILES = \
 			fmt_base.c \
 			fmt_char.c \
 			fmt_dec.c \
+			fmt_floating.c \
 			fmt_ptr.c \
 			fmt_str.c \
 			format.c \
+			format_floating_pt_base.c \
 			format_integer_base.c \
 			format_with.c \
 			length_modifiers.c \

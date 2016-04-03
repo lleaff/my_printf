@@ -1,5 +1,9 @@
 #include "my_printf_f.h"
 
+/*
+ * g_SPECIFIERS is defined in format.c
+ */
+
 #define SET_WIDTH(fspe, w) \
   (fspe)->hasWidth = true; \
   (fspe)->width = w;
@@ -48,7 +52,7 @@ t_fspe *parse_specifier(const char *format, int *index)
   if (str_has(g_SPECIFIERS, format[i]))
     fspe->specifier = format[i++];
   else
-    return unkown_conversion_type_specifier_error(fspe, format[i]);
+    return unknown_conversion_type_specifier_error(fspe, format[i]);
   *index += i;
   return (fspe);
 }
