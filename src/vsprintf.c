@@ -30,7 +30,6 @@ void get_chunks_and_specifiers(const char* format,
     *chunks = ll_append(*chunks, ll_new(make_chunk(format, i, j)));
     if (c == '%')
       *fspes = ll_append(*fspes, ll_new(parse_specifier(format + j + 1, &j)));
-    /* printf("i(%d) j(%d)\n", i, j); *//* DEBUG */
   }
 }
 

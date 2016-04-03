@@ -15,6 +15,11 @@
 #define TEST4_ARG1 255
 #define TEST4_RES (STRLEN(TEST4_FRM) + 1)
 
+#define TEST5_FRM "+33 (33)? [%+i] && -22 (-22)? [%-d].\n"
+#define TEST5_ARG1 33
+#define TEST5_ARG2 -22
+#define TEST5_RES (STRLEN(TEST5_FRM))
+
 int g_failures;
 
 static void assert(char *msg, t_bool res)
@@ -41,6 +46,7 @@ int tests()
   assert("2", my_printf(TEST2_FRM, TEST2_ARG1) == TEST2_RES);
   assert("3", my_printf(TEST3_FRM, TEST3_ARG1) == TEST3_RES);
   assert("4", my_printf(TEST4_FRM, TEST4_ARG1) == TEST4_RES);
+  assert("5", my_printf(TEST5_FRM, TEST5_ARG1, TEST5_ARG2) == TEST5_RES);
   return (g_failures);
 }
 
