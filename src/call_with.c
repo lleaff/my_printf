@@ -9,16 +9,16 @@ char *call_with_int(t_formatter formatter, t_fspe *fspe, va_list args)
   {
     case length_long:
       n = va_arg(args, long int);
-      break;
+      break ;
     case length_long_long:
       n = va_arg(args, long long int);
-      break;
+      break ;
     case length_normal:
     case length_short:
     case length_short_short:
     default:
       n = va_arg(args, int);
-      break;
+      break ;
   }
   return (formatter(&n, fspe));
 }
@@ -31,16 +31,16 @@ char *call_with_uint(t_formatter formatter, t_fspe *fspe, va_list args)
   {
     case length_long:
       n = va_arg(args, unsigned long int);
-      break;
+      break ;
     case length_long_long:
       n = va_arg(args, unsigned long long int);
-      break;
+      break ;
     case length_normal:
     case length_short:
     case length_short_short:
     default:
       n = va_arg(args, unsigned int);
-      break;
+      break ;
   }
   return (formatter(&n, fspe));
 }

@@ -6,6 +6,7 @@ my_printf
 *.a
 
 *.pyc
+.ycm_extra_conf.py
 
 .DS_Store
 .AppleDouble
