@@ -1,11 +1,31 @@
-SRC = $(wildcard src/*.c)
-
-OBJ = $(SRC:.c=.o)
+SRCFILES = \
+			call_with.c \
+			escapes.c \
+			fmt_base.c \
+			fmt_char.c \
+			fmt_dec.c \
+			fmt_ptr.c \
+			fmt_str.c \
+			format.c \
+			format_with_base.c \
+			format_with.c \
+			length_modifiers.c \
+			main.c \
+			my_printf.c \
+			pad_str.c \
+			param_errors.c \
+			prog_args.c \
+			specifiers.c \
+			tests.c \
+			vsprintf.c
 
 OUT =	my_printf
 
 CFLAGS = -g -Werror -Wall -Wextra
 CC = gcc
+
+SRC = $(patsubst %,src/%,$(SRCFILES))
+OBJ = $(SRC:.c=.o)
 
 LIB = libmy.a
 LIB_DIR = lib
