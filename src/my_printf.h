@@ -13,6 +13,8 @@ t_bool check_prog_args(int argc, char **argv);
 char *pad_str_left(char *str, int w, char fill);
 char *pad_str_right(char *str, int w, char fill);
 
+char *replace_escapes_new(const char *str);
+
 #define FLAGS "-+ #0"
 extern const char g_SPECIFIERS[];
 

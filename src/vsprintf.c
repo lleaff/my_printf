@@ -10,6 +10,11 @@
       break ; \
   }
 
+char *make_chunk(const char *format, int i, int j)
+{
+  return (replace_escapes_new(my_strnnew(format + i, j - i)));
+}
+
 void get_chunks_and_specifiers(const char* format,
     t_ll **chunks, t_ll **fspes)
 {
@@ -22,7 +27,7 @@ void get_chunks_and_specifiers(const char* format,
     for (j = i, c = format[j]; c != '\0'; j++, c = format[j])
       if (c == '%')
         BREAK_OR_SKIP_DOUBLE_PERCENT(format, j);
-    *chunks = ll_append(*chunks, ll_new(my_strnnew(format + i, j - i)));
+    *chunks = ll_append(*chunks, ll_new(make_chunk(format, i, j)));
     if (c == '%')
       *fspes = ll_append(*fspes, ll_new(parse_specifier(format + j + 1, &j)));
     /* printf("i(%d) j(%d)\n", i, j); *//* DEBUG */
