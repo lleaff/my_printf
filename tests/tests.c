@@ -1,4 +1,5 @@
-#include "my_printf_f.h"
+#include "my_printf.h"
+#include "lib.h"
 
 #define TEST1_FRM "Hello%%."
 #define TEST1_RES (STRLEN(TEST1_FRM) - 1)

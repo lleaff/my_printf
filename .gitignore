@@ -4,9 +4,13 @@ my_printf
 
 *.o
 *.a
+*.so
 
 *.pyc
 .ycm_extra_conf.py
+
+*.swp
+*~
 
 .DS_Store
 .AppleDouble
