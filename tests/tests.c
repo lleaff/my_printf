@@ -4,8 +4,8 @@
 #define TEST1_FRM "Hello%%."
 #define TEST1_RES (STRLEN(TEST1_FRM) - 1)
 
-#define TEST2_FRM "Hello %s%c."
-#define TEST2_ARG1 "world"
+#define TEST2_FRM "%s world%c."
+#define TEST2_ARG1 "Hello"
 #define TEST2_ARG2 '!'
 #define TEST2_RES (STRLEN(TEST2_FRM) + STRLEN(TEST2_ARG1) - 3)
 

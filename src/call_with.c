@@ -4,64 +4,49 @@
 char *call_with_int(t_formatter formatter, t_fspe *fspe, va_list args)
 {
   t_llint n;
+  t_length_m l;
 
-  switch (fspe->length)
-  {
-    case length_long:
-      n = va_arg(args, long int);
-      break ;
-    case length_long_long:
-      n = va_arg(args, t_llint);
-      break ;
-    case length_normal:
-    case length_short:
-    case length_short_short:
+  l = fspe->length;
+  if (l <= length_normal)
       n = va_arg(args, int);
-      break ;
-    default:
+  else if (l <= length_long)
+      n = va_arg(args, long int);
+  else if (l <= length_long_long)
+      n = va_arg(args, t_llint);
+  else
       return (no_corresponding_length_error(fspe));
-  }
   return (formatter(&n, fspe));
 }
 
 char *call_with_uint(t_formatter formatter, t_fspe *fspe, va_list args)
 {
   t_lluint n;
+  t_length_m l;
 
-  switch (fspe->length)
-  {
-    case length_long:
-      n = va_arg(args, long unsigned int);
-      break ;
-    case length_long_long:
-      n = va_arg(args, t_lluint);
-      break ;
-    case length_normal:
-    case length_short:
-    case length_short_short:
+  l = fspe->length;
+  if (l <= length_normal)
       n = va_arg(args, unsigned int);
-      break ;
-    default:
+  else if (l <= length_long)
+      n = va_arg(args, long unsigned int);
+  else if (l <= length_long_long)
+      n = va_arg(args, t_lluint);
+  else
       return (no_corresponding_length_error(fspe));
-  }
   return (formatter(&n, fspe));
 }
 
 char *call_with_ldouble(t_formatter formatter, t_fspe *fspe, va_list args)
 {
   long double n;
+  t_length_m l;
 
-  switch (fspe->length)
-  {
-    case length_long_double:
-      n = va_arg(args, long double);
-      break ;
-    case length_normal:
+  l = fspe->length;
+  if (l == length_normal)
       n = va_arg(args, double);
-      break ;
-    default:
+  else if (l == length_long_double)
+      n = va_arg(args, long double);
+  else
       return (no_corresponding_length_error(fspe));
-  }
   return (formatter(&n, fspe));
 }
 
