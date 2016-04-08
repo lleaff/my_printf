@@ -31,7 +31,8 @@ SOBJ :=  $(SRC:src/%.c=$(SOBJ_DIR)/%.o)
 DOBJ_DIR =  .shared_obj
 DOBJ :=  $(SRC:src/%.c=$(DOBJ_DIR)/%.o)
 
-LIB = libmy.a
+SLIB = libmy.a
+DLIB = libmy.a
 LIB_DIR = lib
 
 INCLUDES = -Ilib
@@ -53,29 +54,32 @@ STATIC_RULE: $(STATIC_TARGET)
 SHARED_RULE: $(SHARED_TARGET)
 
 $(DOBJ_DIR)/%.o: src/%.c | $(DOBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) -fPIC $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+$(SHARED_TARGET): $(DOBJ) $(DLIB)
+	$(CC) -shared $(CFLAGS) -o $(SHARED_TARGET) $(DOBJ) $(DLIB)
 
 $(SOBJ_DIR)/%.o: src/%.c | $(SOBJ_DIR)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(STATIC_TARGET): $(SOBJ) $(LIB)
-	$(AR) rcs $(STATIC_TARGET) $(SOBJ) $(LIB)
+$(STATIC_TARGET): $(SOBJ) $(SLIB)
+	$(AR) rcs $(STATIC_TARGET) $(SOBJ) $(SLIB)
 	ranlib $(STATIC_TARGET)
-
-$(SHARED_TARGET): $(DOBJ) $(LIB)
-	$(CC) -shared $(CFLAGS) -o $(SHARED_TARGET) $(DOBJ) $(LIB)
 
 $(DOBJ_DIR) $(SOBJ_DIR):
 	@mkdir $@
 
-$(LIB): $(LIB_DIR)
+$(DLIB): $(LIB_DIR)
+	make -C $(LIB_DIR)
+
+$(SLIB): $(LIB_DIR)
 	make -C $(LIB_DIR)
 
 .PHONY: test
 test: tests/test
 	./tests/test
 
-tests/test: tests/tests.c tests/main.c $(STATIC_TARGET) $(LIB) 
+tests/test: tests/tests.c tests/main.c $(STATIC_TARGET) $(SLIB) 
 	$(CC) $(CFLAGS) $(TEST_INCLUDES) $^ -o $@
 
 .PHONY: re
